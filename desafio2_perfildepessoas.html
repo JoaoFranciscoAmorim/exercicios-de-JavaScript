@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criação de Perfil</title>
+    <link rel="stylesheet" href="modelocss3/cssestilo.css">
+</head>
+<body>
+    <header>
+        <h1>Criação de Perfil Pessoal</h1>
+    </header>
+    <section>
+        <div>
+            <p>Ano de Nascimento: <input type="number" id="txtano" min="0"></p>
+            <p>Sexo: <input type="radio" name="radsex" id="masc" checked>
+            <label for="masc">Masculino</label>
+            <input type="radio" name="radsex" id="femi">
+            <label for="femi">Feminino</label>
+            </p>
+            <p>
+                <input type="button" value="verificar" onclick="verificar()">
+            </p>
+        </div>
+        <div id="res">Preencha os dados acima</div>
+    </section>
+    <footer>
+        <p style="color: rgba(160, 15, 15, 0.863);">Curso em Vídeo</p>
+    </footer>
+    <script>
+        function verificar() {
+            var data = new Date()
+            var ano = data.getFullYear()
+            var fano = document.getElementById("txtano")
+            var res = document.getElementById("res")
+            if (fano.value.length == 0 || fano.value > ano) {
+                window.alert('ERRO! Verifique os dados e tente novamente.')
+            } else {
+                var fsex = document.getElementsByName('radsex')
+                var idade = ano - Number(fano.value)
+                var genero = ''
+                var img = document.createElement('img')
+                img.setAttribute('id', 'foto')
+                if (fsex[0].checked) {
+                    genero = "Homem"
+                    if (idade >= 0 && idade <= 40) {
+                        img.setAttribute('src', 'imagensparajs/homemjovem.png')
+                    } else {
+                        img.setAttribute('src', 'imagensparajs/homemvelho.png')
+                    }
+                } else if (fsex[1].checked) {
+                    genero = "Mulher"
+                    if (idade >= 0 && idade <= 40) {
+                        img.setAttribute('src', 'imagensparajs/mulherjovem.png')
+                    } else {
+                        img.setAttribute('src', 'imagensparajs/mulhervelha.png')
+                    }
+                }
+                res.style.textAlign = "center"
+                res.innerHTML = `Detectamos ${genero} com ${idade} anos`
+                res.appendChild(img)
+            }
+        }
+    </script>
+</body>
+</html>

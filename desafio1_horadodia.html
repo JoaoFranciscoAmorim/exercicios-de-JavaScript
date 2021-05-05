@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hora do Dia</title>
+    <link rel="stylesheet" href="modelocss3/cssestilo.css">
+</head>
+<body onload="carregar()">
+    <header>
+        <h1>Hora do dia</h1>
+    </header>
+    <section>
+        <div id="msg">Aqui vai aparecer a hora</div>
+        <div id="fotinha">
+            <img id="imagem" src="imagensparajs/dia.png" alt="">
+        </div>
+    </section>
+    <footer>
+        <p>Curso em Vídeo</p>
+    </footer>
+    <script>
+        function carregar() {
+            var msg = window.document.getElementById("msg")
+            var img = window.document.getElementById("imagem")
+            var data = new Date()
+            var hora = data.getHours()
+            msg.innerHTML = `Agora são ${hora} horas`
+            if (hora >= 0 && hora < 12) {
+                img.src = "imagensparajs/dia.png"
+            } else if (hora >= 12 && hora < 18) {
+                img.src = "imagensparajs/tarde.png"
+            } else {
+                img.src = "imagensparajs/noite.png"
+                document.body.style.background='gray'
+            }
+        }
+    </script>
+    
+</body>
+</html>
